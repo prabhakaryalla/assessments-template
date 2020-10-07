@@ -1,0 +1,15 @@
+#country {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    /* border-collapse: collapse; */
+    width: 50%;
+  }
+
+  #country table, #country th, #country td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  
+ #country th, #country td {
+    padding: 5px;
+    text-align: left;
+  }
