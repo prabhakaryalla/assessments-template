@@ -49,7 +49,7 @@ describe('country List Page', () => {
         expect(populationTr.innerHTML).toBe(minPopulation.toString());
     })
 
-    it('Should filter data when name is entered', async () => {
+    it('Should filter data when searched with name', async () => {
        const wrapper = await mount(<MemoryRouter><CountryList /></MemoryRouter>);
        await wait(() => wrapper.update())
        const search = wrapper.find('input').at(0).getDOMNode() as HTMLInputElement;
@@ -59,4 +59,27 @@ describe('country List Page', () => {
        const rows = wrapper.find('tbody').find('tr');
        expect(rows.length).toBe(1);        
     })
+
+    
+    it('Should filter data when searched with capital', async () => {
+        const wrapper = await mount(<MemoryRouter><CountryList /></MemoryRouter>);
+        await wait(() => wrapper.update())
+        const search = wrapper.find('input').at(0).getDOMNode() as HTMLInputElement;
+        search.value = 'bbb'
+        ReactTestUtils.Simulate.change(search);
+        await wait(() => wrapper.update())
+        const rows = wrapper.find('tbody').find('tr');
+        expect(rows.length).toBe(1);        
+     })
+
+    it('Should not contain rows when filter data with invalid data', async () => {
+        const wrapper = await mount(<MemoryRouter><CountryList /></MemoryRouter>);
+        await wait(() => wrapper.update())
+        const search = wrapper.find('input').at(0).getDOMNode() as HTMLInputElement;
+        search.value = 'invaliddata'
+        ReactTestUtils.Simulate.change(search);
+        await wait(() => wrapper.update())
+        const rows = wrapper.find('tbody').find('tr');
+        expect(rows.length).toBe(0);        
+     })
 })
