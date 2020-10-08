@@ -12,9 +12,16 @@ country2.capital = "test";
 country2.population =  10000;
 country2.alpha3Code = "zzs";
 
+const country3: ICountry = jest.genMockFromModule('../ICountry');
+country3.name = "xyz";
+country3.capital = "bbb";
+country3.population =  50000;
+country3.alpha3Code = "aas";
+
 const mockedCountryList = [
+    country2,
     country1,
-    country2
+    country3
   ];
   
   export const CountryListMock = mockedCountryList
